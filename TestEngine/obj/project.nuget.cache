@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "NZsVVVvNtxg=",
+  "success": true,
+  "projectFilePath": "/home/superkeith/Documents/diagnostic-engine/TestEngine/TestEngine.csproj",
+  "expectedPackageFiles": [
+    "/home/superkeith/.nuget/packages/microsoft.aspnetcore.app.ref/10.0.9/microsoft.aspnetcore.app.ref.10.0.9.nupkg.sha512"
+  ],
+  "logs": []
+}

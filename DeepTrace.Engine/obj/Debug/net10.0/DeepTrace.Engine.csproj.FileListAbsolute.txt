@@ -1,0 +1,12 @@
+/home/superkeith/Documents/diagnostic-engine/DeepTrace.Engine/bin/Debug/net10.0/DeepTrace.Engine.deps.json
+/home/superkeith/Documents/diagnostic-engine/DeepTrace.Engine/bin/Debug/net10.0/DeepTrace.Engine.dll
+/home/superkeith/Documents/diagnostic-engine/DeepTrace.Engine/bin/Debug/net10.0/DeepTrace.Engine.pdb
+/home/superkeith/Documents/diagnostic-engine/DeepTrace.Engine/obj/Debug/net10.0/DeepTrace.Engine.GeneratedMSBuildEditorConfig.editorconfig
+/home/superkeith/Documents/diagnostic-engine/DeepTrace.Engine/obj/Debug/net10.0/DeepTrace.Engine.AssemblyInfoInputs.cache
+/home/superkeith/Documents/diagnostic-engine/DeepTrace.Engine/obj/Debug/net10.0/DeepTrace.Engine.AssemblyInfo.cs
+/home/superkeith/Documents/diagnostic-engine/DeepTrace.Engine/obj/Debug/net10.0/DeepTrace.Engine.csproj.CoreCompileInputs.cache
+/home/superkeith/Documents/diagnostic-engine/DeepTrace.Engine/obj/Debug/net10.0/DeepTrace.Engine.sourcelink.json
+/home/superkeith/Documents/diagnostic-engine/DeepTrace.Engine/obj/Debug/net10.0/DeepTrace.Engine.dll
+/home/superkeith/Documents/diagnostic-engine/DeepTrace.Engine/obj/Debug/net10.0/refint/DeepTrace.Engine.dll
+/home/superkeith/Documents/diagnostic-engine/DeepTrace.Engine/obj/Debug/net10.0/DeepTrace.Engine.pdb
+/home/superkeith/Documents/diagnostic-engine/DeepTrace.Engine/obj/Debug/net10.0/ref/DeepTrace.Engine.dll

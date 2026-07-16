@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v10.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v10.0": {
+      "DeepTrace.Engine/1.0.0": {
+        "runtime": {
+          "DeepTrace.Engine.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "DeepTrace.Engine/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

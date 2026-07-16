@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "j4PzGguoV9k=",
+  "success": true,
+  "projectFilePath": "/home/superkeith/Documents/diagnostic-engine/DeepTrace.Engine/DeepTrace.Engine.csproj",
+  "expectedPackageFiles": [
+    "/home/superkeith/.nuget/packages/microsoft.aspnetcore.app.ref/10.0.9/microsoft.aspnetcore.app.ref.10.0.9.nupkg.sha512"
+  ],
+  "logs": []
+}
