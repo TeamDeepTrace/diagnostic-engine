@@ -72,6 +72,15 @@ var gpu = new Problem
 
 var questions = new List<DiagnosticQuestion>
 {
+
+    new()
+    {
+        Id = "touch_works",
+        Text = "Does touch still work?",
+        EvidenceId = "touch_works",
+        Description = "Try tapping and dragging on different parts of the touchscreen. Select Yes if touch input responds normally even if the display image appears distorted."
+    },
+    
     new()
     {
         Id = "external_monitor",
@@ -86,14 +95,6 @@ var questions = new List<DiagnosticQuestion>
         Text = "Are there vertical lines on the display?",
         EvidenceId = "vertical_lines",
         Description = "Look closely at the built-in display. Select Yes if you see one or more vertical lines that remain visible regardless of what is displayed on the screen."
-    },
-
-    new()
-    {
-        Id = "touch_works",
-        Text = "Does touch still work?",
-        EvidenceId = "touch_works",
-        Description = "Try tapping and dragging on different parts of the touchscreen. Select Yes if touch input responds normally even if the display image appears distorted."
     },
 
     new()
