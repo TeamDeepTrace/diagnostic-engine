@@ -24,11 +24,11 @@ public class Engine
         _settings = settings;
     }
 
-    public DiagnosticSession CreateSession(string deivce)
+    public DiagnosticSession CreateSession(string device)
     {
         return new DiagnosticSession
         {
-            Device = deivce
+            Device = device
         };
     }
 
