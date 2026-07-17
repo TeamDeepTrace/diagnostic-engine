@@ -45,6 +45,31 @@ var lcd = new Problem
     ]
 };
 
+var gpu = new Problem
+{
+    Id = "gpu",
+    Name = "GPU Failure",
+
+    Rules =
+    [
+        new Rule
+        {
+            EvidenceId = "external_monitor",
+            ExpectedValue = EvidenceValue.No,
+            Weight = 50,
+            Reason = "External display failure can indicate a GPU output issue."
+        },
+
+        new Rule
+        {
+            EvidenceId = "artifacts",
+            ExpectedValue = EvidenceValue.Yes,
+            Weight = 40,
+            Reason = "Visual artifacts are common with GPU failures."
+        }
+    ]
+};
+
 var questions = new List<DiagnosticQuestion>
 {
     new()
@@ -69,10 +94,24 @@ var questions = new List<DiagnosticQuestion>
         Text = "Does touch still work?",
         EvidenceId = "touch_works",
         Description = "Try tapping and dragging on different parts of the touchscreen. Select Yes if touch input responds normally even if the display image appears distorted."
+    },
+
+    new()
+    {
+        Id = "artifacts",
+        Text = "Does the output look wrong in any way?",
+        EvidenceId = "artifacts",
+        Description = "Select Yes if any parts of the display appear distorted."
     }
 };
 
-var engine = new Engine([displayCable, lcd], questions);
+var engine = new Engine(
+    [displayCable, lcd, gpu], 
+    questions,
+    new EngineSettings
+    {
+        ProblemThreshold = 0.5
+    });
 
 var session = engine.CreateSession("Surface Pro 7");
 

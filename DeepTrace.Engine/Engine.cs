@@ -9,16 +9,19 @@ public class Engine
 
     private readonly List<DiagnosticQuestion> _questions;
 
+    private readonly EngineSettings _settings;
+
     private readonly ScoringEngine _scoring = new();
 
     private readonly ConfidenceCalculator _confidence = new();
 
     private readonly QuestionSelector _selector = new();
 
-    public Engine(List<Problem> problems, List<DiagnosticQuestion> questions)
+    public Engine(List<Problem> problems, List<DiagnosticQuestion> questions, EngineSettings settings)
     {
         _problems = problems;
         _questions = questions;
+        _settings = settings;
     }
 
     public DiagnosticSession CreateSession(string deivce)
@@ -79,7 +82,8 @@ public class Engine
             session,
             _questions,
             results,
-            _problems);
+            _problems,
+            _settings);
     }
 
     public bool IsComplete(DiagnosticSession session)

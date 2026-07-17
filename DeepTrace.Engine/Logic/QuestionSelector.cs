@@ -4,9 +4,23 @@ namespace DeepTrace.Engine.Logic;
 
 public class QuestionSelector
 {
-    public DiagnosticQuestion? SelectNextQuestion(DiagnosticSession session, List<DiagnosticQuestion> questions, List<DiagnosticResult> results, List<Problem> problems)
+
+    public DiagnosticQuestion? SelectNextQuestion(DiagnosticSession session, List<DiagnosticQuestion> questions, List<DiagnosticResult> results, List<Problem> problems, EngineSettings settings)
     {
-        foreach (var result in results.OrderByDescending(r => r.Score))
+        var rankedResults = results
+            .OrderByDescending(r => r.Score)
+            .ToList();
+
+        if (rankedResults.Count == 0)
+            return null;
+
+        var bestScore = rankedResults[0].Score;
+
+        var candidateProblems = rankedResults
+            .Where(r => r.Score >= bestScore * settings.ProblemThreshold)
+            .ToList();
+
+        foreach (var result in candidateProblems)
         {
             var problem = result.Problem;
 
