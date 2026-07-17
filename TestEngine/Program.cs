@@ -26,6 +26,14 @@ var displayCable = new Problem
             ExpectedValue = EvidenceValue.Yes,
             Weight = 15,
             Reason = "Touch still works, suggesting only the display path is affected."
+        },
+
+        new Rule
+        {
+            EvidenceId = "artifacts",
+            ExpectedValue = EvidenceValue.Yes,
+            Weight = 40,
+            Reason = "Visual artifacts are common with GPU failures."
         }
     ]
 };
@@ -41,6 +49,14 @@ var lcd = new Problem
             ExpectedValue = EvidenceValue.Yes,
             Weight = 25,
             Reason = "Vertical lines can indicate an LCD panel failure."
+        },
+
+        new Rule
+        {
+            EvidenceId = "artifacts",
+            ExpectedValue = EvidenceValue.Yes,
+            Weight = 60,
+            Reason = "Visual artifacts are common with LCD failures."
         }
     ]
 };

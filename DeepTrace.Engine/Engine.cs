@@ -17,6 +17,8 @@ public class Engine
 
     private readonly QuestionSelector _selector = new();
 
+    private readonly CompletionEvaluator _completion = new();
+
     public Engine(List<Problem> problems, List<DiagnosticQuestion> questions, EngineSettings settings)
     {
         _problems = problems;
@@ -28,7 +30,8 @@ public class Engine
     {
         return new DiagnosticSession
         {
-            Device = device
+            Device = device,
+            State = DiagnosticState.Running
         };
     }
 
@@ -78,12 +81,23 @@ public class Engine
     {
         var results = GetResults(session);
 
-        return _selector.SelectNextQuestion(
+        session.State = _completion.Evaluate(session, results, _settings);
+
+        Console.WriteLine($"State: {session.State}");
+
+        if (session.State != DiagnosticState.Running)
+        {
+            return null;
+        }
+
+        DiagnosticQuestion nextQuestion = _selector.SelectNextQuestion(
             session,
             _questions,
             results,
             _problems,
             _settings);
+
+        return nextQuestion;
     }
 
     public bool IsComplete(DiagnosticSession session)

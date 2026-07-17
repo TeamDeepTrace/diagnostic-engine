@@ -1,14 +1,16 @@
-namespace DeepTrace.Engine.Models;
+    namespace DeepTrace.Engine.Models;
 
-public class DiagnosticSession
-{
-    public Guid Id { get; } = Guid.NewGuid();
+    public class DiagnosticSession
+    {
+        public Guid Id { get; } = Guid.NewGuid();
 
-    public string Device { get; set; } = "";
+        public string Device { get; set; } = "";
 
-    public List<Evidence> Evidence { get; } = [];
+        public List<Evidence> Evidence { get; } = [];
 
-    public HashSet<string> AskedQuestions { get; } = [];
+        public HashSet<string> AskedQuestions { get; } = [];
 
-    public bool Complete { get; set; }
-}
+        public bool Complete { get; set; }
+
+        public DiagnosticState State { get; set; }
+    }
