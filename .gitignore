@@ -1,5 +1,5 @@
 # Build output
-bin/
+**/bin/
 obj/
 
 # User-specific files
