@@ -11,10 +11,21 @@ public class CompletionEvaluator
         
         if (session.Evidence.Count < settings.MinimumQuestions)
             return DiagnosticState.Running;
-        
-        if (results.OrderByDescending(r => r.Confidence).First().Confidence >= settings.CompletionThreshold)
-            return DiagnosticState.Completed;
 
-        return DiagnosticState.Running;
+        List<DiagnosticResult> sortedResults = results.OrderByDescending(r => r.Confidence).ToList();
+
+        DiagnosticResult firstResult = sortedResults[0];
+
+        if (firstResult.Confidence < settings.CompletionThreshold)
+            return DiagnosticState.Running;
+        
+        if (sortedResults.Count > 1)
+        {
+            DiagnosticResult secondResult = sortedResults[1];
+            if (firstResult.Confidence - secondResult.Confidence <= settings.ConfidenceGapThreshold)
+                return DiagnosticState.Running;
+        }
+
+        return DiagnosticState.Completed;
     }
 }
