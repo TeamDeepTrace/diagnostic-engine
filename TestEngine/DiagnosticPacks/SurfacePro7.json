@@ -1,0 +1,113 @@
+{
+    "Name": "Surface Pro 7",
+    "Problems": [ 
+        {
+            "Id": "display_cable",
+            "Name": "Display Cable Failure",
+            "Rules": [
+                {
+                    "EvidenceId": "external_monitor",
+                    "ExpectedValue": "Yes",
+                    "Weight": 40,
+                    "Reason": "External monitor works, indicating the GPU is likely functioning."
+                },
+                {
+                    "EvidenceId": "vertical_lines",
+                    "ExpectedValue": "Yes",
+                    "Weight": 30,
+                    "Reason": "Vertical lines are a common symptom of a damaged display cable."
+                },
+                {
+                    "EvidenceId": "touch_works",
+                    "ExpectedValue": "Yes",
+                    "Weight": 15,
+                    "Reason": "Touch still works, suggesting only the display path is affected."
+                },
+                {
+                    "EvidenceId": "artifacts",
+                    "ExpectedValue": "Yes",
+                    "Weight": 40,
+                    "Reason": "Display artifacts can indicate a damaged display connection."
+                }
+            ]
+        },
+
+        {
+            "Id": "lcd",
+            "Name": "LCD Failure",
+            "Rules": [
+                {
+                    "EvidenceId": "vertical_lines",
+                    "ExpectedValue": "Yes",
+                    "Weight": 25,
+                    "Reason": "Vertical lines can indicate an LCD panel failure."
+                },
+                {
+                    "EvidenceId": "artifacts",
+                    "ExpectedValue": "Yes",
+                    "Weight": 60,
+                    "Reason": "Visual artifacts are common with LCD failures."
+                }
+            ]
+        },
+
+        {
+            "Id": "gpu",
+            "Name": "GPU Failure",
+            "Rules": [
+                {
+                    "EvidenceId": "external_monitor",
+                    "ExpectedValue": "No",
+                    "Weight": 50,
+                    "Reason": "External display failure can indicate a GPU output issue."
+                },
+                {
+                    "EvidenceId": "artifacts",
+                    "ExpectedValue": "Yes",
+                    "Weight": 40,
+                    "Reason": "Visual artifacts are common with GPU failures."
+                }
+            ]
+        }
+    ],
+    "Questions": [
+        {
+            "Id": "touch_works",
+            "Text": "Does touch still work?",
+            "EvidenceId": "touch_works",
+            "Description": "Try tapping and dragging on different parts of the touchscreen. Select Yes if touch input responds normally even if the display image appears distorted.",
+            "Importance": 2.0
+        },
+
+        {
+            "Id": "external_monitor",
+            "Text": "Does an external monitor work?",
+            "EvidenceId": "external_monitor",
+            "Description": "Connect the device to an external monitor or TV using a compatible video cable or adapter. If the external display shows a normal image, select Yes.",
+            "Importance": 1.5
+        },
+
+        {
+            "Id": "vertical_lines",
+            "Text": "Are there vertical lines on the display?",
+            "EvidenceId": "vertical_lines",
+            "Description": "Look closely at the built-in display. Select Yes if you see one or more vertical lines that remain visible regardless of what is displayed on the screen.",
+            "Importance": 1.2
+        },
+
+        {
+            "Id": "artifacts",
+            "Text": "Does the output look wrong in any way?",
+            "EvidenceId": "artifacts",
+            "Description": "Select Yes if any parts of the display appear distorted.",
+            "Importance": 0.8
+        }
+
+    ],
+    "Settings": {
+        "ProblemThreshold": 0.5,
+        "CompletionThreshold": 90,
+        "MinimumQuestions": 2,
+        "ConfidenceGapThreshold": 20
+    }
+}

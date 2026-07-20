@@ -19,11 +19,11 @@ public class Engine
 
     private readonly CompletionEvaluator _completion = new();
 
-    public Engine(List<Problem> problems, List<DiagnosticQuestion> questions, EngineSettings settings)
+    public Engine(DiagnosticPack pack)
     {
-        _problems = problems;
-        _questions = questions;
-        _settings = settings;
+        _problems = pack.Problems;
+        _questions = pack.Questions;
+        _settings = pack.Settings;
     }
 
     public DiagnosticSession CreateSession(string device)

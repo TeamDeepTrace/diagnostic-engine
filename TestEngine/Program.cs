@@ -1,138 +1,20 @@
 ﻿using DeepTrace.Engine;
 using DeepTrace.Engine.Models;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
-var displayCable = new Problem
+var options = new JsonSerializerOptions
 {
-    Id = "display_cable",
-    Name = "Display Cable Failure",
-
-    Rules = [
-        new Rule {
-            EvidenceId = "external_monitor",
-            ExpectedValue = EvidenceValue.Yes,
-            Weight = 40,
-            Reason = "External monitor works, indicating the GPU is likely functioning."
-        },
-
-        new Rule {
-            EvidenceId = "vertical_lines",
-            ExpectedValue = EvidenceValue.Yes,
-            Weight = 30,
-            Reason = "Vertical lines are a common symptom of a damaged display cable."
-        },
-
-        new Rule {
-            EvidenceId = "touch_works",
-            ExpectedValue = EvidenceValue.Yes,
-            Weight = 15,
-            Reason = "Touch still works, suggesting only the display path is affected."
-        },
-
-        new Rule
-        {
-            EvidenceId = "artifacts",
-            ExpectedValue = EvidenceValue.Yes,
-            Weight = 40,
-            Reason = "Visual artifacts are common with GPU failures."
-        }
-    ]
-};
-
-var lcd = new Problem
-{
-    Id = "lcd",
-    Name = "LCD Failure",
-
-    Rules = [
-        new Rule {
-            EvidenceId = "vertical_lines",
-            ExpectedValue = EvidenceValue.Yes,
-            Weight = 25,
-            Reason = "Vertical lines can indicate an LCD panel failure."
-        },
-
-        new Rule
-        {
-            EvidenceId = "artifacts",
-            ExpectedValue = EvidenceValue.Yes,
-            Weight = 60,
-            Reason = "Visual artifacts are common with LCD failures."
-        }
-    ]
-};
-
-var gpu = new Problem
-{
-    Id = "gpu",
-    Name = "GPU Failure",
-
-    Rules =
-    [
-        new Rule
-        {
-            EvidenceId = "external_monitor",
-            ExpectedValue = EvidenceValue.No,
-            Weight = 50,
-            Reason = "External display failure can indicate a GPU output issue."
-        },
-
-        new Rule
-        {
-            EvidenceId = "artifacts",
-            ExpectedValue = EvidenceValue.Yes,
-            Weight = 40,
-            Reason = "Visual artifacts are common with GPU failures."
-        }
-    ]
-};
-
-var questions = new List<DiagnosticQuestion>
-{
-
-    new()
+    Converters =
     {
-        Id = "touch_works",
-        Text = "Does touch still work?",
-        EvidenceId = "touch_works",
-        Description = "Try tapping and dragging on different parts of the touchscreen. Select Yes if touch input responds normally even if the display image appears distorted.",
-        Importance = 2.0
-    },
-    
-    new()
-    {
-        Id = "external_monitor",
-        Text = "Does an external monitor work?",
-        EvidenceId = "external_monitor",
-        Description = "Connect the device to an external monitor or TV using a compatible video cable or adapter. If the external display shows a normal image, select Yes.",
-        Importance = 1.5
-    },
-
-    new()
-    {
-        Id = "vertical_lines",
-        Text = "Are there vertical lines on the display?",
-        EvidenceId = "vertical_lines",
-        Description = "Look closely at the built-in display. Select Yes if you see one or more vertical lines that remain visible regardless of what is displayed on the screen.",
-        Importance = 1.2
-    },
-
-    new()
-    {
-        Id = "artifacts",
-        Text = "Does the output look wrong in any way?",
-        EvidenceId = "artifacts",
-        Description = "Select Yes if any parts of the display appear distorted.",
-        Importance = 0.8
+        new JsonStringEnumConverter()
     }
 };
 
-var engine = new Engine(
-    [displayCable, lcd, gpu], 
-    questions,
-    new EngineSettings
-    {
-        ProblemThreshold = 0.5
-    });
+string json = File.ReadAllText("DiagnosticPacks/SurfacePro7.json");
+DiagnosticPack? pack = JsonSerializer.Deserialize<DiagnosticPack>(json, options);
+
+var engine = new Engine(pack);
 
 var session = engine.CreateSession("Surface Pro 7");
 
