@@ -1,18 +1,9 @@
 ﻿using DeepTrace.Engine;
+using DeepTrace.Engine.Loading;
 using DeepTrace.Engine.Models;
-using System.Text.Json;
-using System.Text.Json.Serialization;
 
-var options = new JsonSerializerOptions
-{
-    Converters =
-    {
-        new JsonStringEnumConverter()
-    }
-};
-
-string json = File.ReadAllText("DiagnosticPacks/SurfacePro7.json");
-DiagnosticPack? pack = JsonSerializer.Deserialize<DiagnosticPack>(json, options);
+DiagnosticPackLoader loader = new DiagnosticPackLoader();
+DiagnosticPack? pack = loader.Load("DiagnosticPacks/SurfacePro7.json");
 
 var engine = new Engine(pack);
 
