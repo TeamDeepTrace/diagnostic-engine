@@ -9,4 +9,6 @@ public class DiagnosticQuestion
     public string EvidenceId { get; set; } = "";
 
     public string? Description { get; set; }
+
+    public double Importance { get; set; }
 }

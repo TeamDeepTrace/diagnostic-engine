@@ -94,7 +94,8 @@ var questions = new List<DiagnosticQuestion>
         Id = "touch_works",
         Text = "Does touch still work?",
         EvidenceId = "touch_works",
-        Description = "Try tapping and dragging on different parts of the touchscreen. Select Yes if touch input responds normally even if the display image appears distorted."
+        Description = "Try tapping and dragging on different parts of the touchscreen. Select Yes if touch input responds normally even if the display image appears distorted.",
+        Importance = 2.0
     },
     
     new()
@@ -102,7 +103,8 @@ var questions = new List<DiagnosticQuestion>
         Id = "external_monitor",
         Text = "Does an external monitor work?",
         EvidenceId = "external_monitor",
-        Description = "Connect the device to an external monitor or TV using a compatible video cable or adapter. If the external display shows a normal image, select Yes."
+        Description = "Connect the device to an external monitor or TV using a compatible video cable or adapter. If the external display shows a normal image, select Yes.",
+        Importance = 1.5
     },
 
     new()
@@ -110,7 +112,8 @@ var questions = new List<DiagnosticQuestion>
         Id = "vertical_lines",
         Text = "Are there vertical lines on the display?",
         EvidenceId = "vertical_lines",
-        Description = "Look closely at the built-in display. Select Yes if you see one or more vertical lines that remain visible regardless of what is displayed on the screen."
+        Description = "Look closely at the built-in display. Select Yes if you see one or more vertical lines that remain visible regardless of what is displayed on the screen.",
+        Importance = 1.2
     },
 
     new()
@@ -118,7 +121,8 @@ var questions = new List<DiagnosticQuestion>
         Id = "artifacts",
         Text = "Does the output look wrong in any way?",
         EvidenceId = "artifacts",
-        Description = "Select Yes if any parts of the display appear distorted."
+        Description = "Select Yes if any parts of the display appear distorted.",
+        Importance = 0.8
     }
 };
 

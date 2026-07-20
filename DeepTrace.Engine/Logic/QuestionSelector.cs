@@ -80,7 +80,7 @@ public class QuestionSelector
             {
                 if (rule.EvidenceId == question.EvidenceId)
                 {
-                    score += (result.Confidence / 100) * rule.Weight;
+                    score += (result.Confidence / 100) * rule.Weight * question.Importance;
                 }
             }
         }

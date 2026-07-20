@@ -83,8 +83,6 @@ public class Engine
 
         session.State = _completion.Evaluate(session, results, _settings);
 
-        Console.WriteLine($"State: {session.State}");
-
         if (session.State != DiagnosticState.Running)
         {
             return null;
