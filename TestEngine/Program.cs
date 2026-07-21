@@ -2,8 +2,8 @@
 using DeepTrace.Engine.Loading;
 using DeepTrace.Engine.Models;
 
-DiagnosticPackLoader loader = new DiagnosticPackLoader();
-DiagnosticPack? pack = loader.Load("DiagnosticPacks/SurfacePro7.json");
+DiagnosticPackManager manager = new("DiagnosticPacks");
+DiagnosticPack pack = manager.Load("SP7");
 
 var engine = new Engine(pack);
 
