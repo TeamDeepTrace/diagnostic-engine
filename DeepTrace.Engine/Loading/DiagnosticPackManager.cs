@@ -1,4 +1,5 @@
 using DeepTrace.Engine.Models;
+using DeepTrace.Engine.Validation;
 using System.Text.Json;
 
 namespace DeepTrace.Engine.Loading;
@@ -10,6 +11,8 @@ public class DiagnosticPackManager
     private readonly string _packDirectory;
 
     private readonly DiagnosticPackLoader _loader = new();
+
+    private readonly DiagnosticPackValidator _validator = new();
 
     public DiagnosticPackManager(string packDirectory)
     {
@@ -41,13 +44,30 @@ public class DiagnosticPackManager
         _packDirectory = packDirectory;
     }
 
-    public DiagnosticPack Load(string name)
+    public DiagnosticPackLoaderResult Load(string name)
     {
         if (!_packPaths.TryGetValue(name, out var file))
             throw new KeyNotFoundException($"Diagnostic pack '{name}' was not found in the index.");
         
         string path = Path.Combine(_packDirectory, file);
 
-        return _loader.Load(path);
+        var pack = _loader.Load(path);
+
+        var validation = _validator.Validate(pack);
+
+        if (!validation.IsValid)
+        {
+            return new DiagnosticPackLoaderResult
+            {
+                Success = false,
+                Errors = validation.Errors
+            };
+        }
+
+        return new DiagnosticPackLoaderResult
+        {
+            Success = true,
+            Pack = pack
+        };
     }
 }

@@ -37,6 +37,13 @@ public class DiagnosticPackValidator
             result.Errors.Add($"Duplicate problem ID '{group.Key}'.");
         }
 
+        var duplicateQuestionIds = pack.Questions.GroupBy(q => q.Id).Where(g => g.Count() > 1);
+
+        foreach (var group in duplicateQuestionIds)
+        {
+            result.Errors.Add($"Duplicate question ID '{group.Key}'.");
+        }
+
         result.IsValid = result.Errors.Count == 0;
 
         return result;

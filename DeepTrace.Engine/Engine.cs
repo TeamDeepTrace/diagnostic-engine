@@ -109,7 +109,7 @@ public class Engine
             return null;
         }
 
-        DiagnosticQuestion nextQuestion = _selector.SelectNextQuestion(
+        DiagnosticQuestion? nextQuestion = _selector.SelectNextQuestion(
             session,
             _questions,
             results,

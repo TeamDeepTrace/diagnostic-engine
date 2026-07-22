@@ -14,9 +14,11 @@ public class EngineTests
     {
         var manager = new DiagnosticPackManager("DiagnosticPacks");
 
-        var pack = manager.Load("Surface Pro 7");
+        var loadResult = manager.Load("Surface Pro 7");
 
-        var engine = new Engine.Engine(pack);
+        Assert.True(loadResult.Success);
+
+        var engine = new Engine.Engine(loadResult.Pack!);
 
         var session = engine.CreateSession("Surface Pro 7");
 
@@ -36,10 +38,12 @@ public class EngineTests
     public void GPUFailure_WhenSymptomsMatch_ReturnsGPUFailure()
     {
         var manager = new DiagnosticPackManager("DiagnosticPacks");
-        
-        var pack = manager.Load("Surface Pro 7");
 
-        var engine = new Engine.Engine(pack);
+        var loadResult = manager.Load("Surface Pro 7");
+
+        Assert.True(loadResult.Success);
+
+        var engine = new Engine.Engine(loadResult.Pack!);
 
         var session = engine.CreateSession("Surface Pro 7");
 
@@ -58,9 +62,11 @@ public class EngineTests
     {
         var manager = new DiagnosticPackManager("DiagnosticPacks");
 
-        var pack = manager.Load("Surface Pro 7");
+        var loadResult = manager.Load("Surface Pro 7");
 
-        var engine = new Engine.Engine(pack);
+        Assert.True(loadResult.Success);
+
+        var engine = new Engine.Engine(loadResult.Pack!);
 
         var session = engine.CreateSession("Surface Pro 7");
 
@@ -75,9 +81,11 @@ public class EngineTests
     {
         var manager = new DiagnosticPackManager("DiagnosticPacks");
 
-        var pack = manager.Load("Surface Pro 7");
+        var loadResult = manager.Load("Surface Pro 7");
 
-        var engine = new Engine.Engine(pack);
+        Assert.True(loadResult.Success);
+
+        var engine = new Engine.Engine(loadResult.Pack!);
 
         var session = engine.CreateSession("Surface Pro 7");
 
@@ -94,9 +102,11 @@ public class EngineTests
     {
         var manager = new DiagnosticPackManager("DiagnosticPacks");
 
-        var pack = manager.Load("Surface Pro 7");
+        var loadResult = manager.Load("Surface Pro 7");
 
-        var engine = new Engine.Engine(pack);
+        Assert.True(loadResult.Success);
+
+        var engine = new Engine.Engine(loadResult.Pack!);
 
         var session = engine.CreateSession("Surface Pro 7");
 
@@ -110,9 +120,11 @@ public class EngineTests
     {
         var manager = new DiagnosticPackManager("DiagnosticPacks");
 
-        var pack = manager.Load("Surface Pro 7");
+        var loadResult = manager.Load("Surface Pro 7");
 
-        var engine = new Engine.Engine(pack);
+        Assert.True(loadResult.Success);
+
+        var engine = new Engine.Engine(loadResult.Pack!);
 
         var session = engine.CreateSession("Surface Pro 7");
 
@@ -151,9 +163,11 @@ public class EngineTests
     {
         var manager = new DiagnosticPackManager("DiagnosticPacks");
 
-        var pack = manager.Load("Surface Pro 7");
+        var loadResult = manager.Load("Surface Pro 7");
 
-        var engine = new Engine.Engine(pack);
+        Assert.True(loadResult.Success);
+
+        var engine = new Engine.Engine(loadResult.Pack!);
 
         var session = engine.CreateSession("Surface Pro 7");
 
