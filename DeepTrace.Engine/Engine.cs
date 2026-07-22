@@ -19,11 +19,14 @@ public class Engine
 
     private readonly CompletionEvaluator _completion = new();
 
+    private readonly DiagnosticPack _pack;
+
     public Engine(DiagnosticPack pack)
     {
         _problems = pack.Problems;
         _questions = pack.Questions;
         _settings = pack.Settings;
+        _pack = pack;
     }
 
     public DiagnosticSession CreateSession(string device)
@@ -35,8 +38,20 @@ public class Engine
         };
     }
 
-    public void SubmitAnswer(DiagnosticSession session, string questionId, EvidenceValue anwser)
+    public DiagnosticActionResult SubmitAnswer(DiagnosticSession session, string questionId, EvidenceValue anwser)
     {
+        var questionExists = _pack.Questions.Any(q => q.Id == questionId);
+
+        if (!questionExists)
+        {
+            return new DiagnosticActionResult
+            {
+                Success = false,
+                Error = DiagnosticError.QuestionNotFound,
+                ErrorMessage = $"Question '{questionId}' was not found."
+            };
+        }
+
         session.AskedQuestions.Add(questionId);
 
         session.Evidence.Add(
@@ -46,6 +61,12 @@ public class Engine
                 Value = anwser
             }
         );
+
+        return new DiagnosticActionResult
+        {
+            Success = true,
+            Error = DiagnosticError.None
+        };
     }
 
     public List<DiagnosticResult> GetResults(DiagnosticSession session)

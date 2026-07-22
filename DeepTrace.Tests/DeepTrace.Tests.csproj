@@ -22,4 +22,11 @@
     <ProjectReference Include="..\DeepTrace.Engine\DeepTrace.Engine.csproj" />
   </ItemGroup>
 
+<ItemGroup>
+  <None Include="../TestEngine/DiagnosticPacks/**/*">
+    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <Link>DiagnosticPacks/%(RecursiveDir)%(Filename)%(Extension)</Link>
+  </None>
+</ItemGroup>
+
 </Project>
