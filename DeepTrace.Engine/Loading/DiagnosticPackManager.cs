@@ -14,9 +14,25 @@ public class DiagnosticPackManager
 
     private readonly DiagnosticPackValidator _validator = new();
 
+    private readonly KnowledgeBaseVersion _version;
+
     public DiagnosticPackManager(string packDirectory)
     {
         string indexPath = Path.Combine(packDirectory, "Index.json");
+
+        string versionPath = Path.Combine(packDirectory, "Version.json") ;
+        if (!File.Exists(versionPath))
+        {
+            throw new FileNotFoundException("Knowledge base version file not found");
+        }
+        
+        string versionJson = File.ReadAllText(versionPath);
+
+        _version = JsonSerializer.Deserialize<KnowledgeBaseVersion>(versionJson, 
+            new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            }) ?? throw new InvalidDataException("Invalid knowledge base version file.");
 
         if (!File.Exists(indexPath))
         {
@@ -69,5 +85,10 @@ public class DiagnosticPackManager
             Success = true,
             Pack = pack
         };
+    }
+
+    public KnowledgeBaseVersion GetVersion()
+    {
+        return _version;
     }
 }
